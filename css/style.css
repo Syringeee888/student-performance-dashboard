@@ -1,0 +1,322 @@
+:root {
+  --desk: #22282B;
+  --desk-raised: #2B3235;
+  --desk-line: #3B4347;
+  --paper-text: #E8E3D8;
+  --paper-text-soft: #A9AFAE;
+
+  --card: #F6F1E3;
+  --card-edge: #E1D6B8;
+  --ink: #241F1A;
+  --ink-soft: #746A58;
+
+  --excellent: #3F7D5C;
+  --passed: #3C6E8F;
+  --needs-improvement: #B4802E;
+  --failed: #A23E3E;
+
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--desk);
+  background-image:
+    linear-gradient(var(--desk-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--desk-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+  color: var(--paper-text);
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+}
+
+:focus-visible {
+  outline: 2px solid #E9B44C;
+  outline-offset: 2px;
+}
+
+button, input, select { font-family: inherit; }
+
+.site-header {
+  border-bottom: 1px solid var(--desk-line);
+  padding: 2.75rem 1.5rem 2rem;
+}
+
+.header-inner {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.app-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.75rem);
+  margin: 0 0 0.35rem;
+  color: var(--paper-text);
+}
+
+.app-subtitle {
+  margin: 0;
+  color: var(--paper-text-soft);
+  font-size: 1rem;
+}
+
+.page {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1.25rem;
+  background: var(--desk-raised);
+  border: 1px solid var(--desk-line);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.control-search { flex: 1 1 15rem; }
+
+.control-label {
+  font-size: 0.8rem;
+  color: var(--paper-text-soft);
+}
+
+.controls input[type="text"],
+.controls select {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  min-width: 9rem;
+}
+
+.controls input[type="text"] { min-width: 100%; }
+
+.control-buttons {
+  flex-direction: row;
+  gap: 0.6rem;
+}
+
+.controls button {
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#applyBtn {
+  background: var(--passed);
+  color: #F3F7F9;
+}
+
+#applyBtn:hover { background: #345F7C; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--paper-text);
+  border-color: var(--desk-line);
+}
+
+.btn-secondary:hover { border-color: var(--paper-text-soft); }
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--desk-line);
+  border: 1px solid var(--desk-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.summary-stat {
+  background: var(--desk-raised);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.summary-value {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.summary-label {
+  font-size: 0.8rem;
+  color: var(--paper-text-soft);
+}
+
+.message-area {
+  min-height: 1.4rem;
+  color: #E9B44C;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.student-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.1rem;
+  animation: settle 0.4s ease-out;
+}
+
+@keyframes settle {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  color: var(--paper-text-soft);
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+.student-card {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem 1rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-bottom: 1px dashed var(--card-edge);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.student-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+}
+
+.student-block {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.grade-badge {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.grade-value {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.grade-caption {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+.score-rows {
+  margin: 0 0 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.score-row dt { color: var(--ink-soft); font-weight: 400; }
+.score-row dd { margin: 0; font-weight: 500; }
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  color: #F6F1E3;
+}
+
+.remark {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.status-excellent { color: var(--excellent); }
+.status-pill.status-excellent { background: var(--excellent); color: #F6F1E3; }
+
+.status-passed { color: var(--passed); }
+.status-pill.status-passed { background: var(--passed); color: #F6F1E3; }
+
+.status-needs-improvement { color: var(--needs-improvement); }
+.status-pill.status-needs-improvement { background: var(--needs-improvement); color: #F6F1E3; }
+
+.status-failed { color: var(--failed); }
+.status-pill.status-failed { background: var(--failed); color: #F6F1E3; }
+
+.site-footer {
+  border-top: 1px solid var(--desk-line);
+  padding: 1.25rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.site-footer p {
+  max-width: 76rem;
+  margin: 0 auto;
+  color: var(--paper-text-soft);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .controls { padding: 1rem; }
+  .controls input[type="text"],
+  .controls select { min-width: 0; width: 100%; }
+}
