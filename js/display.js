@@ -11,6 +11,29 @@ function statusToSlug(status) {
   return status.toLowerCase().replace(/\s+/g, "-");
 }
 
+class StudentRecord {
+  constructor(student) {
+    this.id = student.id;
+    this.name = student.name;
+    this.block = student.block;
+    this.quiz = student.quiz;
+    this.lab = student.lab;
+    this.exam = student.exam;
+  }
+
+  get finalGrade() {
+    return calculateFinalGrade(this);
+  }
+
+  get status() {
+    return getAcademicStatus(this.finalGrade);
+  }
+
+  get remark() {
+    return getPerformanceRemark(this.finalGrade);
+  }
+}
+
 export function displayStudents(students) {
   const listEl = document.getElementById("studentList");
   listEl.innerHTML = "";
@@ -24,10 +47,11 @@ export function displayStudents(students) {
   displayMessage("");
 
   students.forEach((student) => {
-    const { id, name, block, quiz, lab, exam } = student;
-    const finalGrade = calculateFinalGrade(student);
-    const status = getAcademicStatus(finalGrade);
-    const remark = getPerformanceRemark(finalGrade);
+    const record = new StudentRecord(student);
+    const { id, name, block, quiz, lab, exam } = record;
+    const finalGrade = record.finalGrade;
+    const status = record.status;
+    const remark = record.remark;
     const slug = statusToSlug(status);
 
     const card = document.createElement("article");

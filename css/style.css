@@ -15,8 +15,8 @@
   --needs-improvement: #B4802E;
   --failed: #A23E3E;
 
-  --serif: "Source Serif 4", Georgia, serif;
-  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, sans-serif;
 
   --radius: 3px;
 }
