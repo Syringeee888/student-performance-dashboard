@@ -7,10 +7,6 @@ import {
   getTopStudent
 } from "./gradeUtils.js";
 
-function statusToSlug(status) {
-  return status.toLowerCase().replace(/\s+/g, "-");
-}
-
 class StudentRecord {
   constructor(student) {
     this.id = student.id;
@@ -52,41 +48,18 @@ export function displayStudents(students) {
     const finalGrade = record.finalGrade;
     const status = record.status;
     const remark = record.remark;
-    const slug = statusToSlug(status);
 
     const card = document.createElement("article");
     card.className = "student-card";
     card.dataset.id = id;
 
     card.innerHTML = `
-      <header class="card-top">
-        <div class="card-heading">
-          <h3 class="student-name">${name}</h3>
-          <span class="student-block">${block}</span>
-        </div>
-        <div class="grade-badge status-${slug}">
-          <span class="grade-value">${finalGrade.toFixed(2)}</span>
-          <span class="grade-caption">final grade</span>
-        </div>
-      </header>
-      <dl class="score-rows">
-        <div class="score-row">
-          <dt>Quiz</dt>
-          <dd>${quiz}</dd>
-        </div>
-        <div class="score-row">
-          <dt>Laboratory</dt>
-          <dd>${lab}</dd>
-        </div>
-        <div class="score-row">
-          <dt>Prelim Exam</dt>
-          <dd>${exam}</dd>
-        </div>
-      </dl>
-      <footer class="card-bottom">
-        <span class="status-pill status-${slug}">${status}</span>
-        <span class="remark">${remark}</span>
-      </footer>
+      <h3 class="student-name">${name}</h3>
+      <p class="card-line">Block: ${block}</p>
+      <p class="card-line">Quiz: ${quiz} | Lab: ${lab} | Exam: ${exam}</p>
+      <p class="card-line">Final Grade: ${finalGrade.toFixed(2)}</p>
+      <p class="card-line">Status: ${status}</p>
+      <p class="card-line">Remark: ${remark}</p>
     `;
 
     listEl.appendChild(card);
