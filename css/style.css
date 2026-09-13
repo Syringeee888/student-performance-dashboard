@@ -186,18 +186,6 @@ button, input, select {
   color: var(--text-soft);
 }
 
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 1rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.site-footer p {
-  max-width: 72rem;
-  margin: 0 auto;
-  color: var(--text-soft);
-  font-size: 0.85rem;
-}
 
 @media (max-width: 640px) {
   .controls input[type="text"],
